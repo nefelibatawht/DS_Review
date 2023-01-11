@@ -112,4 +112,5 @@ bool DestroyList(SqList &L)
     delete[] L.elem;
     L.length = 0;
     return true;
+    // 整体删除数组
 }
