@@ -17,6 +17,8 @@ void showLinkList(LinkList L);
 LNode *GetElem(LinkList L, int i);
 // 按值查找结点，返回结点的序号
 int GetElemByVal(LinkList L, int e);
+// 结点的插入操作(其中结点的数据域值为e，插入第i个位置)
+LinkList InsertNode(LinkList &L, int i, int e);
 int main(void)
 {
     LinkList L = NULL;
@@ -24,12 +26,14 @@ int main(void)
     // List_HeadInsert(L);
     List_TailInsert(L);
     showLinkList(L);
-    scanf("%d", &cnt);
-    // LNode *res = GetElem(L, cnt);
-    int res = 0;
-    res = GetElemByVal(L, cnt);
-    cout << "\n"
-         << res << endl;
+    // scanf("%d", &cnt);
+    //  LNode *res = GetElem(L, cnt);
+    // int res = 0;
+    // res = GetElemByVal(L, cnt);
+    // cout << "\n" << res << endl;
+    LinkList res = InsertNode(L, 3, 12);
+    cout << "\n";
+    showLinkList(res);
     return 0;
 }
 LinkList List_HeadInsert(LinkList &L)
@@ -99,4 +103,16 @@ int GetElemByVal(LinkList L, int e)
         cnt++;
     }
     return cnt;
+}
+LinkList InsertNode(LinkList &L, int i, int e)
+{
+    LNode *tmp = GetElem(L, i);
+    LNode *insertElem = new LNode;
+    insertElem->data = e;
+    insertElem->next = tmp->next;
+    tmp->next = insertElem;
+    int temp = tmp->data;
+    tmp->data = insertElem->data;
+    insertElem->data = temp;
+    return L;
 }
