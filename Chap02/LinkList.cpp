@@ -13,12 +13,23 @@ LinkList List_HeadInsert(LinkList &L);
 LinkList List_TailInsert(LinkList &L);
 //
 void showLinkList(LinkList L);
+// 按序号查询结点
+LNode *GetElem(LinkList L, int i);
+// 按值查找结点，返回结点的序号
+int GetElemByVal(LinkList L, int e);
 int main(void)
 {
     LinkList L = NULL;
+    int cnt;
     // List_HeadInsert(L);
     List_TailInsert(L);
     showLinkList(L);
+    scanf("%d", &cnt);
+    // LNode *res = GetElem(L, cnt);
+    int res = 0;
+    res = GetElemByVal(L, cnt);
+    cout << "\n"
+         << res << endl;
     return 0;
 }
 LinkList List_HeadInsert(LinkList &L)
@@ -61,4 +72,31 @@ void showLinkList(LinkList L)
         printf("%d\t", tmp->data);
         tmp = tmp->next;
     }
+}
+LNode *GetElem(LinkList L, int i)
+{
+    if (i < 1)
+    {
+        exit(1);
+    }
+    int j = 1; // 计数器作用
+    LNode *tmp = L->next;
+    while (tmp != NULL && j < i)
+    {
+        tmp = tmp->next;
+        j++;
+    }
+    return tmp;
+}
+
+int GetElemByVal(LinkList L, int e)
+{
+    int cnt = 1;
+    LNode *tmp = L->next;
+    while (tmp != NULL && (tmp->data != e))
+    {
+        tmp = tmp->next;
+        cnt++;
+    }
+    return cnt;
 }
