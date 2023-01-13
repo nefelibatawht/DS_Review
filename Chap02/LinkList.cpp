@@ -19,6 +19,10 @@ LNode *GetElem(LinkList L, int i);
 int GetElemByVal(LinkList L, int e);
 // 结点的插入操作(其中结点的数据域值为e，插入第i个位置)
 LinkList InsertNode(LinkList &L, int i, int e);
+// 结点的删除
+LinkList deleteNode(LinkList &L, int i);
+// 求表长（不含头结点）
+int getLength(LinkList L);
 int main(void)
 {
     LinkList L = NULL;
@@ -31,9 +35,13 @@ int main(void)
     // int res = 0;
     // res = GetElemByVal(L, cnt);
     // cout << "\n" << res << endl;
-    LinkList res = InsertNode(L, 3, 12);
+    // LinkList res = InsertNode(L, 3, 12);
     cout << "\n";
-    showLinkList(res);
+    // LinkList res = deleteNode(L, 2);
+    // showLinkList(res);
+    cout << "\n";
+    int numRes = getLength(L);
+    cout << numRes << endl;
     return 0;
 }
 LinkList List_HeadInsert(LinkList &L)
@@ -70,7 +78,7 @@ LinkList List_TailInsert(LinkList &L)
 }
 void showLinkList(LinkList L)
 {
-    LNode *tmp = L->next;
+    LNode *tmp = L->next; // 忽略头结点对计数的影响
     while (tmp != NULL)
     {
         printf("%d\t", tmp->data);
@@ -115,4 +123,24 @@ LinkList InsertNode(LinkList &L, int i, int e)
     tmp->data = insertElem->data;
     insertElem->data = temp;
     return L;
+}
+LinkList deleteNode(LinkList &L, int i)
+{
+    LNode *front = GetElem(L, i - 1);
+    LNode *del = front->next;
+    front->next = del->next;
+    free(del);
+    return L;
+}
+
+int getLength(LinkList L)
+{
+    int cnt = 0;
+    LNode *tmp = L->next;
+    while (tmp != NULL)
+    {
+        tmp = tmp->next;
+        cnt++;
+    }
+    return cnt;
 }
