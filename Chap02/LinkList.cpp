@@ -21,6 +21,8 @@ int GetElemByVal(LinkList L, int e);
 LinkList InsertNode(LinkList &L, int i, int e);
 // 结点的删除
 LinkList deleteNode(LinkList &L, int i);
+// 后插法插入节点
+LinkList InsertNodeTail(LinkList &L, int i, int e);
 // 求表长（不含头结点）
 int getLength(LinkList L);
 int main(void)
@@ -35,13 +37,13 @@ int main(void)
     // int res = 0;
     // res = GetElemByVal(L, cnt);
     // cout << "\n" << res << endl;
-    // LinkList res = InsertNode(L, 3, 12);
+    LinkList res = InsertNodeTail(L, 2, 12);
     cout << "\n";
     // LinkList res = deleteNode(L, 2);
-    // showLinkList(res);
+    showLinkList(res);
     cout << "\n";
-    int numRes = getLength(L);
-    cout << numRes << endl;
+    // int numRes = getLength(L);
+    // cout << numRes << endl;
     return 0;
 }
 LinkList List_HeadInsert(LinkList &L)
@@ -143,4 +145,24 @@ int getLength(LinkList L)
         cnt++;
     }
     return cnt;
+}
+LinkList InsertNodeTail(LinkList &L, int i, int e)
+{
+    if (i == 1)
+    {
+        LNode *tmp = L;
+        LNode *ins = new LNode;
+        ins->data = e;
+        ins->next = tmp->next;
+        L->next = ins;
+    }
+    else
+    {
+        LNode *tmp = GetElem(L, i - 1);
+        LNode *ins = new LNode;
+        ins->data = e;
+        ins->next = tmp->next;
+        tmp->next = ins;
+    }
+    return L;
 }
