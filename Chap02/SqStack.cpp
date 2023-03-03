@@ -1,11 +1,11 @@
-// 栈的顺序存储
-// 操作�?
+// 鏍堢殑椤哄簭瀛樺偍
+// 鎿嶄綔锟??
 /**
- * 初始�?
- * 判断是否空栈
- * 进栈
- * 出栈
- * 读取栈顶元素
+ * 鍒濆锟??
+ * 鍒ゆ柇鏄惁绌烘爤
+ * 杩涙爤
+ * 鍑烘爤
+ * 璇诲彇鏍堥《鍏冪礌
  */
 #include <iostream>
 #include <algorithm>
@@ -15,7 +15,7 @@ typedef int ElemType;
 typedef struct SqStack
 {
     ElemType *data;
-    int top; // 栈顶指针
+    int top; // 鏍堥《鎸囬拡
 } SqStack;
 void InitStack(SqStack &sq);
 bool EmptyStack(SqStack sq);
@@ -40,7 +40,7 @@ int main(void)
     showStack(sq);
     cout << "Top Pointer" << endl;
     cout << sq.top << endl;
-    cout << "Top Elem" << endl;
+    cout  << "Top Elem" << endl;
     readTop(sq);
     ElemType *resArray = POP(sq);
     for (int i = 0; i < MAXSIZE; i++)
